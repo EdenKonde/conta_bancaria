@@ -1,7 +1,10 @@
-import { prompt, questionInt } from "readline-sync";
+import { prompt, questionInt, questionFloat, question } from "readline-sync";
 import { colors } from "./src/util/Colors";
+import { Conta } from "./src/model/Conta";
 
 export const main = () => {
+  const contas: Conta[] = [];
+
   let opcao: number;
   while (true) {
     console.log(
@@ -18,7 +21,7 @@ export const main = () => {
     console.log("           2 - Listar todas as Contas             ");
     console.log("           3 - Buscar Conta por Numero            ");
     console.log("           4 - Atualizar Dados da Conta           ");
-    console.log("           5 - Apagar Conta     ");
+    console.log("           5 - Apagar Conta     "                  );
     console.log("           6 - Sacar                              ");
     console.log("           7 - Depositar                          ");
     console.log("           8 - Transferir valores entre Contas    ");
@@ -42,6 +45,14 @@ export const main = () => {
     switch (opcao) {
       case 1:
         console.log(colors.fg.whitestrong, "\n\nCriar Conta\n\n", colors.reset);
+        const numero = questionInt("Numero da conta: ");
+        const agencia = questionInt("Agencia: ");
+        const tipo = questionInt("Tipo (1 - Corrente, 2 - Poupanca): ");
+        const titular = question("Nome do titular: ");
+        const saldo = questionFloat("Saldo inicial: ");
+
+        const novaConta = new Conta(numero, agencia, tipo, titular, saldo);
+        contas.push(novaConta);
 
         keyPress();
         break;
@@ -51,6 +62,10 @@ export const main = () => {
           "\n\nListar todas as Contas\n\n",
           colors.reset
         );
+
+        contas.forEach((conta) => {
+          conta.visualizar();
+        });
 
         keyPress();
         break;
