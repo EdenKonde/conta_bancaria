@@ -1,9 +1,18 @@
 import { prompt, questionInt, questionFloat, question } from "readline-sync";
-import { colors } from "./src/util/Colors";
 import { Conta } from "./src/model/Conta";
+import { colors } from "./src/util/Colors";
 
 export const main = () => {
   const contas: Conta[] = [];
+
+  // Teste
+  const conta1: Conta = new Conta(1, 123, 1, "Eden", 100200);
+  const conta2: Conta = new Conta(2, 456, 1, "Konde", 200200);
+  conta1.visualizar();
+  conta1.sacar(10500);
+  conta1.visualizar();
+  conta2.depositar(5000);
+  conta2.visualizar();
 
   let opcao: number;
   while (true) {
@@ -21,7 +30,7 @@ export const main = () => {
     console.log("           2 - Listar todas as Contas             ");
     console.log("           3 - Buscar Conta por Numero            ");
     console.log("           4 - Atualizar Dados da Conta           ");
-    console.log("           5 - Apagar Conta     "                  );
+    console.log("           5 - Apagar Conta                       ");
     console.log("           6 - Sacar                              ");
     console.log("           7 - Depositar                          ");
     console.log("           8 - Transferir valores entre Contas    ");
@@ -75,6 +84,12 @@ export const main = () => {
           "\n\nConsultar dados da Conta - por número\n\n",
           colors.reset
         );
+        const numConta = questionInt("Numero da conta : ");
+        const conta = contas.find((conta) => conta.numero === numConta);
+
+        conta
+          ? conta.visualizar()
+          : console.log("Número da conta não localizada");
 
         keyPress();
         break;
