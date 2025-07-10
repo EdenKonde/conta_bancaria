@@ -1,11 +1,13 @@
 import { prompt, questionInt, questionFloat, question } from "readline-sync";
 import { Conta } from "./src/model/Conta";
 import { colors } from "./src/util/Colors";
+import { ContaCorrente } from "./src/model/ContaCorrente";
+import { ContaPoupanca } from "./src/model/ContaPoupanca";
 
 export const main = () => {
   const contas: Conta[] = [];
 
-  // Teste
+  // Teste 
   const conta1: Conta = new Conta(1, 123, 1, "Eden", 100200);
   const conta2: Conta = new Conta(2, 456, 1, "Konde", 200200);
   conta1.visualizar();
@@ -13,6 +15,36 @@ export const main = () => {
   conta1.visualizar();
   conta2.depositar(5000);
   conta2.visualizar();
+
+  // Teste ContaCorrente 
+  const contacorrente: ContaCorrente = new ContaCorrente(
+    12023656,
+    422,
+    1,
+    "Musta Konde",
+    75000,
+    45000
+  );
+  contacorrente.visualizar();
+  contacorrente.sacar(2000);
+  contacorrente.visualizar();
+  contacorrente.depositar(1000);
+  contacorrente.visualizar();
+
+  // TesteContaPoupanca
+  const contapoupanca: ContaPoupanca = new ContaPoupanca(
+    12023652,
+    233,
+    2,
+    "Eden Junior",
+    5000,
+    70
+  );
+  contapoupanca.visualizar();
+  contapoupanca.sacar(200);
+  contapoupanca.visualizar();
+  contapoupanca.depositar(1000);
+  contapoupanca.visualizar();
 
   let opcao: number;
   while (true) {
