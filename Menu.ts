@@ -7,16 +7,7 @@ import { ContaPoupanca } from "./src/model/ContaPoupanca";
 export const main = () => {
   const contas: Conta[] = [];
 
-  // Teste 
-  const conta1: Conta = new Conta(1, 123, 1, "Eden", 100200);
-  const conta2: Conta = new Conta(2, 456, 1, "Konde", 200200);
-  conta1.visualizar();
-  conta1.sacar(10500);
-  conta1.visualizar();
-  conta2.depositar(5000);
-  conta2.visualizar();
-
-  // Teste ContaCorrente 
+  // Teste ContaCorrente
   const contacorrente: ContaCorrente = new ContaCorrente(
     12023656,
     422,
@@ -91,9 +82,6 @@ export const main = () => {
         const tipo = questionInt("Tipo (1 - Corrente, 2 - Poupanca): ");
         const titular = question("Nome do titular: ");
         const saldo = questionFloat("Saldo inicial: ");
-
-        const novaConta = new Conta(numero, agencia, tipo, titular, saldo);
-        contas.push(novaConta);
 
         keyPress();
         break;
